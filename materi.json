@@ -1,0 +1,19 @@
+{
+  "materi": [
+    {
+      "tipe": "doc",
+      "judul": "Rangkuman Materi IPA",
+      "file": "media/materi-ipa.doc"
+    },
+    {
+      "tipe": "gambar",
+      "judul": "Gambar Sistem Reproduksi",
+      "file": "media/gambar-ipa.jpg"
+    },
+    {
+      "tipe": "video",
+      "judul": "Video Pembelajaran IPA",
+      "file": "https://www.youtube.com/embed/VIDEO_ID"
+    }
+  ]
+}
