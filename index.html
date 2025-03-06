@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video with Redirect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    #youtube-video {
+      border: 5px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #next-button {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #next-button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+      #youtube-video {
+        width: 100%;
+        height: auto;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tonton Video Ini</h1>
+  </header>
+  <main>
+    <iframe
+      id="youtube-video"
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/K4Rw3Xy1CH0?enablejsapi=1"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+    <button id="next-button">Lanjut ke Materi Berikutnya</button>
+  </main>
+
+  <script>
+    let player;
+
+    function loadYouTubeAPI() {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-video', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.ENDED) {
+        alert('Video selesai diputar. Kembali ke halaman materi.');
+        document.getElementById('next-button').style.display = 'block';
+      }
+    }
+
+    document.getElementById('next-button').addEventListener('click', function() {
+      window.location.href = 'halaman-materi.html'; // Ganti dengan URL halaman berikutnya
+    });
+
+    loadYouTubeAPI();
+  </script>
+</body>
+</html>
